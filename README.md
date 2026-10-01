@@ -1,5 +1,7 @@
 # Telecom Customer Churn Analysis
 
+Also known as ChurnGuard.
+
 An end-to-end machine learning application for predicting telecom customer churn. The project combines a trained scikit-learn pipeline, a FastAPI prediction service, a Streamlit interface, SHAP-based feature explanations, and Docker Compose deployment.
 
 ![Application screenshot](screenshot.png)
@@ -92,6 +94,19 @@ The complete request and response schemas are available at `/docs` after startin
 ## Model and Data
 
 The application loads `models/churn_pipeline.pkl` at startup. The source dataset is stored in `datasets/WA_Fn-UseC_-Telco-Customer-Churn.csv`. The notebooks document exploratory analysis and model development.
+
+## Results
+
+Evaluated on a stratified 20% hold-out (1,409 of 7,043 customers):
+
+| Metric | Value |
+| --- | --- |
+| ROC-AUC | 0.83 |
+| Recall (churn) | 0.72 |
+| Precision (churn) | 0.53 |
+| Accuracy | 0.76 |
+
+The pipeline uses SMOTE inside an imbalanced-learn Pipeline, so oversampling is applied only to training data (no leakage).
 
 ## Reproducibility Notes
 
